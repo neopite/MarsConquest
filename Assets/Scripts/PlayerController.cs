@@ -4,19 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerCotroller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     
     [SerializeField]private float _speed = 2f;
     [SerializeField]private float _jumpForce = 2f;
-    private GameObject _player;
     private Rigidbody _playerRg;
+    private Animator _animator;
+    private bool _isTookOff;
+    public bool IsGrounded;
+    private static readonly int State = Animator.StringToHash("State");
+    private static readonly int TookOff = Animator.StringToHash("Took_off");
+    private static readonly int IsJumping = Animator.StringToHash("Is_Jumping");
 
     void Start()
     {
-        _player = GameObject.FindWithTag("Player");
-        _playerRg = _player.GetComponent<Rigidbody>();
-
+        _playerRg = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -24,21 +28,44 @@ public class PlayerCotroller : MonoBehaviour
         float horValue = Input.GetAxis("Horizontal") * _speed;
         float vertValue = Input.GetAxis("Vertical") * _speed;
         Vector3 movementVector = new Vector3(horValue,_playerRg.velocity.y,vertValue);
-        _playerRg.velocity = movementVector;
+        if (movementVector.magnitude == 0)
+        {
+            _animator.SetInteger(State,2);
+        }
+        else
+        {
+            _animator.SetInteger(State,1);
+            _playerRg.velocity = movementVector;
+        }
     }
 
     void Update()
     {
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+        IsGrounded = CheckIsGrounded();
+        if (IsGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Pressed");
             _playerRg.velocity = new Vector3(_playerRg.velocity.x, _jumpForce, _playerRg.velocity.z);
+            _isTookOff = true;
+            _animator.SetTrigger(TookOff);
         }
+
+        if (IsGrounded)
+        {
+            _animator.SetBool(IsJumping, false);
+
+        }
+        else _animator.SetBool(IsJumping, true);
     }
 
-    private bool IsGrounded()
+    private bool CheckIsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 1.1f);
+       return Physics.Raycast(transform.position, Vector3.down, 1.1f);
+       
     }
-    
+
+    private enum PlayerStates
+    { 
+        RUN = 1, 
+       IDLE = 2,
+    }
 }
