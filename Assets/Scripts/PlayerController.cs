@@ -25,30 +25,47 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+       Run();
+       _playerRg.velocity = transform.TransformDirection(_playerRg.velocity);
+    }
+
+    void Update()
+    {
+        Jump();
+    }
+
+    private void Run()
+    {
         float horValue = Input.GetAxis("Horizontal") * _speed;
         float vertValue = Input.GetAxis("Vertical") * _speed;
         Vector3 movementVector = new Vector3(horValue,_playerRg.velocity.y,vertValue);
-        if (movementVector.magnitude == 0)
+        if (movementVector.magnitude <= 0.1)
         {
+            _playerRg.velocity = Vector3.zero;
             _animator.SetInteger(State,2);
         }
         else
         {
             _animator.SetInteger(State,1);
-            _playerRg.velocity = movementVector;
+            var playerRgVelocity = _playerRg.velocity;
+            playerRgVelocity.z = _speed * vertValue;
+            playerRgVelocity.x =_speed * horValue;
+            _playerRg.velocity = playerRgVelocity;
         }
     }
 
-    void Update()
+    private void Jump()
     {
         IsGrounded = CheckIsGrounded();
+        Debug.Log(IsGrounded);
         if (IsGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            _playerRg.velocity = new Vector3(_playerRg.velocity.x, _jumpForce, _playerRg.velocity.z);
+            var playerRgVelocity = _playerRg.velocity;
+            playerRgVelocity.y = _jumpForce;
+            _playerRg.velocity = playerRgVelocity;
             _isTookOff = true;
             _animator.SetTrigger(TookOff);
         }
-
         if (IsGrounded)
         {
             _animator.SetBool(IsJumping, false);
@@ -60,7 +77,6 @@ public class PlayerController : MonoBehaviour
     private bool CheckIsGrounded()
     {
        return Physics.Raycast(transform.position, Vector3.down, 1.1f);
-       
     }
 
     private enum PlayerStates
