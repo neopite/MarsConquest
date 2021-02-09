@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         IsGrounded = CheckIsGrounded();
-        Debug.Log(IsGrounded);
         if (IsGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             var playerRgVelocity = _playerRg.velocity;
@@ -76,7 +75,9 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckIsGrounded()
     {
-       return Physics.Raycast(transform.position, Vector3.down, 1.1f);
+        Debug.DrawRay(transform.position,Vector3.down*0.7f);
+       return Physics.Raycast(transform.position, Vector3.down*.3f, 1.1f);
+       
     }
 
     private enum PlayerStates

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,9 +18,12 @@ public class ThirdPersonCameraController : MonoBehaviour
     {
         float dX = Input.GetAxis("Mouse X");
         float dY = Input.GetAxis("Mouse Y");
-        dY = Mathf.Clamp(dY,-35, 60);
+       
+        dY = Mathf.Clamp(dY,-10, 10);
+        dX = Mathf.Clamp(dX, -2, 2);
         mouseX += dX;
         mouseY -= dY;
+        mouseY = Mathf.Clamp(mouseY, 0, 22);
         transform.LookAt(CameraTransform);
         if (Input.GetMouseButton(1))
         {
