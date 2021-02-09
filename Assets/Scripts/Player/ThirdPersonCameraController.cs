@@ -11,6 +11,7 @@ public class ThirdPersonCameraController : MonoBehaviour
     private float mouseX, mouseY;
     void Start()
     {
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
