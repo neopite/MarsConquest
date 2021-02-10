@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace DefaultNamespace
@@ -10,7 +11,6 @@ namespace DefaultNamespace
        [SerializeField] private ResourceType _resourceType;
        [SerializeField] private int _amount;
        
-
         public ResourceType ResourceType
         {
             get => _resourceType;
@@ -39,6 +39,5 @@ namespace DefaultNamespace
                 Destroy(gameObject);
             }
         }
-        
     }
 }
