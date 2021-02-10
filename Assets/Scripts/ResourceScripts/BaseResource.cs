@@ -24,7 +24,7 @@ namespace DefaultNamespace
 
         }
         
-        public void Collect(int quantityGainResource)
+        public int Collect(int quantityGainResource)
         {
             Amount -= quantityGainResource;
             int materialGain;
@@ -33,11 +33,12 @@ namespace DefaultNamespace
                 materialGain = Amount + quantityGainResource;
             }
             else materialGain = quantityGainResource;
-
             if (Amount <= 0)
             {
                 Destroy(gameObject);
             }
+
+            return materialGain;
         }
     }
 }

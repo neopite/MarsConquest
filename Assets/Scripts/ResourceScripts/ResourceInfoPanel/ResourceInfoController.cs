@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class ResourceDisplayController : MonoBehaviour
+    public class ResourceInfoController : MonoBehaviour
     {
         private GameObject _resourceWindow;
         private IResource _resourceData;
@@ -18,7 +18,8 @@ namespace DefaultNamespace
             _oreQuantity = _resourceWindow.transform.Find("Quantity").GetComponent <TextMeshProUGUI>();
             _oreName.SetText(_resourceData.ResourceType.ToString());
             _oreQuantity.SetText(_resourceData.Amount.ToString());
-            _resourceWindow.SetActive(false);
+            GameEvents.Instance.OnResourceDisplayOnPupupPanel += ChangeResourceQuantity;
+                _resourceWindow.SetActive(false);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -32,6 +33,16 @@ namespace DefaultNamespace
         private void OnTriggerExit(Collider other)
         {
             _resourceWindow.SetActive(false);
+        }
+
+        public void ChangeResourceQuantity(int newQuantity)
+        {
+            _oreQuantity.SetText(_resourceData.Amount.ToString());
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.Instance.OnResourceDisplayOnPupupPanel -= ChangeResourceQuantity;
         }
     }
 }

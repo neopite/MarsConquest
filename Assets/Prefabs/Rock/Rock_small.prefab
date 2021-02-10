@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2465123432271178925}
   - component: {fileID: 3912183094557983167}
   - component: {fileID: 8275248424220261098}
-  - component: {fileID: 1104909044}
+  - component: {fileID: 1104909038}
   m_Layer: 0
   m_Name: Rock_small
   m_TagString: Untagged
@@ -215,7 +215,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.1270676, y: 1.074625, z: 4.839739}
   m_Center: {x: -0.12437868, y: 0.26160866, z: 0.07636833}
---- !u!114 &1104909044
+--- !u!114 &1104909038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

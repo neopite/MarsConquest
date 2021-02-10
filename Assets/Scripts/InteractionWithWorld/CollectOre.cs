@@ -12,7 +12,7 @@ namespace InteractionWithWorld
         {
             _resource = GetComponent<BaseResource>();
         }
-
+        
         public  InteractionType InteractType { get; set; }
 
         public override string GetDescription()
@@ -22,8 +22,11 @@ namespace InteractionWithWorld
 
         public override void Interact()
         {
-            _resource.Collect(2);
+           int materialGain = _resource.Collect(2);
+            GameEvents.Instance.ResourceDisplayOnPupupPanel(materialGain);
+            GameEvents.Instance.ReceiveResource(2 , _resource.ResourceType);
             Debug.Log("Mined 2 ores" + " remains : " + _resource.Amount);
         }
+        
     }
 }

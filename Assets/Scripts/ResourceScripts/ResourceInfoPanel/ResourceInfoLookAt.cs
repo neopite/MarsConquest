@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceDisplayLookAt : MonoBehaviour
+public class ResourceInfoLookAt : MonoBehaviour
 {
     private Camera _camera;
     

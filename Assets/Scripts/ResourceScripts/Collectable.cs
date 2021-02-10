@@ -2,6 +2,6 @@
 {
     public interface Collectable 
     {
-        void Collect(int quantityGainResource);
+        int Collect(int quantityGainResource);
     }
 }
