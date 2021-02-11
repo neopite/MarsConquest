@@ -10,16 +10,18 @@ namespace InteractionWithWorld
         [SerializeField]private float _interactionDistance = 2f;
         public GameObject TextFieldGameObject;
         private TextMeshProUGUI _textMeshProUGUI;
+        private CapsuleCollider _playerCollider;
         private void Start()
         {
             _textMeshProUGUI = TextFieldGameObject.GetComponent<TextMeshProUGUI>();
+            _playerCollider = GetComponent<CapsuleCollider>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             RaycastHit raycastHit ;
-            Debug.DrawRay(transform.position,transform.forward*_interactionDistance);
-            if (Physics.Raycast(transform.position, transform.forward, out raycastHit,_interactionDistance))
+            Debug.DrawRay(_playerCollider.bounds.center,transform.forward*_interactionDistance);
+            if (Physics.Raycast(_playerCollider.bounds.center, transform.forward, out raycastHit,_interactionDistance))
             {
                 Interactable interaction = raycastHit.collider.GetComponent<Interactable>();
                 ActivateTextField();
@@ -34,11 +36,6 @@ namespace InteractionWithWorld
         private void ActivateTextField()
         { 
             TextFieldGameObject.SetActive(true);
-        }
-
-        private void DeactivateTextField()
-        {
-            TextFieldGameObject.SetActive(false);
         }
         
         private void HandleInteraction(Interactable interactable)

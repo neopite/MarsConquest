@@ -54,8 +54,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.7, z: 1.5}
-  m_Center: {x: -0.1885171, y: 0.33548737, z: -0.11405468}
+  m_Size: {x: 1.9502234, y: 1.0431702, z: 1.8215885}
+  m_Center: {x: -0.13491893, y: 0.27114296, z: -0.14621353}
 --- !u!1 &7282694075316543708
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,8 +99,8 @@ GameObject:
   - component: {fileID: 7670294254794911878}
   - component: {fileID: 2465123432271178925}
   - component: {fileID: 3912183094557983167}
-  - component: {fileID: 8275248424220261098}
   - component: {fileID: 1104909038}
+  - component: {fileID: 8275248424220261098}
   m_Layer: 0
   m_Name: Rock_small
   m_TagString: Untagged
@@ -202,19 +202,6 @@ MonoBehaviour:
       m_Calls: []
   _resourceType: 2
   _amount: 10
---- !u!65 &8275248424220261098
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7670294254796802334}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.1270676, y: 1.074625, z: 4.839739}
-  m_Center: {x: -0.12437868, y: 0.26160866, z: 0.07636833}
 --- !u!114 &1104909038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +214,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3020b025d3204a8dad4d72e6f5b361ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8275248424220261098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7670294254796802334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.1270676, y: 2.6493554, z: 3.7182784}
+  m_Center: {x: -0.12437868, y: 1, z: -0.10386634}
 --- !u!1001 &759857334062939689
 PrefabInstance:
   m_ObjectHideFlags: 0

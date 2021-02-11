@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de044ff1f1c94dedacda55a94776733f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionDistance: 2
+  _interactionDistance: 2.5
   TextFieldGameObject: {fileID: 0}
 --- !u!1 &1158021920011488
 GameObject:
